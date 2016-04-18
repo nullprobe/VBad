@@ -14,7 +14,7 @@ key_hiding_method = "doc_variable"
 
 #encroyption available : xor
 encryption_type = "xor"
-encryption_key_length = 5000 #Max is 65280 for Document.Variable method
+encryption_key_length = 50000 #Max is 65280 for Document.Variable method
 
 #Regex
 variable_name_ex = "toto"
