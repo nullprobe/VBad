@@ -12,7 +12,7 @@ trigger_close_test_name = "toto"
 #methods available: variables
 key_hiding_method = "doc_variable"
 
-#encroyption available : xor
+#encryption available : xor
 encryption_type = "xor"
 encryption_key_length = 50000 #Max is 65280 for Document.Variable method
 
@@ -29,14 +29,14 @@ regex_string_to_hide = '\[var::(\w*)\]'
 regex_string_to_hide_find = '\[var::'+variable_name_ex+'\]'
 
 #Office informations
-template_file = r"C:\tmp\Vbad\Example\Template\template.doc"
-filename_list = r"C:\tmp\Vbad\Example\Lists\filename_list.txt"
+template_file = r"C:\tmp\Vbad\Example\Template\template.doc" #Path to the template file used for generate malicious files (To be modified)
+filename_list = r"C:\tmp\Vbad\Example\Lists\filename_list.txt" #Path to the list that contains the filename of the malicious files that will be generated (To be modified)
 
 #saving informations
-path_gen_files = r"C:\tmp\Vbad\Example\Results"
+path_gen_files = r"C:\tmp\Vbad\Example\Results" #Path were results will be saved (To be modified)
 
 #Malicious VBS Information:
 #All data you want to encrypt and include in your doc
-original_vba_file = r"C:\tmp\Vbad\Example\Orignal_VBA\original_vba_prepared.vbs"
-trigger_function_name =  "Test" #Function that you want to auto_trigger (in your original_vba_file)
+original_vba_file = r"C:\tmp\Vbad\Example\Orignal_VBA\original_vba_prepared.vbs" #Path the prepared VBA files (To be modified)
+trigger_function_name =  "Test" #Function that you want to auto_trigger (in your original_vba_file) (To be modified)
 string_to_hide = {"domain_name":"http://www.test.com", "path_to_save":r"C:\tmp\toto"}
