@@ -12,6 +12,7 @@ VBad is a tool that allows you to obfuscate (and encrypted) in many diffrent way
 * Encrypt all strings present in your VBA code;
 * Encrypt data from your python Script in VBA code (domain names or paths for example);
 * Randomize each functions' (or variables) names that you want;
+* Delete all tabulation/spaces/cariage return
 * Chose Encryption method, how and where encryption keys are stored;
 * Generate as many unique MS Office document (with different randomize in the VBA) as you want using a filename list and a document Template;
 * Enable autodestruction of encryption Keys feature once the VBA has been trigger once; 
