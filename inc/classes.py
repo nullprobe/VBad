@@ -93,14 +93,15 @@ class WordObject:
         if method == "onOpen":
             gen_fun = "Private Sub Document_Open()\n"
 
-        gen_fun += """If ActiveDocument.Variables("%(key_name)s").Value <> "toto" Then
+        gen_fun += """If ActiveDocument.Variables("%(key_name)s").Value <> "%(trigger_close_test_value)s" Then
         %(trigger_fun_name)s
-        ActiveDocument.Variables("%(key_name)s").Value = "toto"
+        ActiveDocument.Variables("%(key_name)s").Value = "%(trigger_close_test_value)s"
         If ActiveDocument.ReadOnly=False Then
         ActiveDocument.Save
         End If
         End If
         """%{
+        "trigger_close_test_value" : trigger_close_test_name,
         "trigger_fun_name" : vba_object.rand_trigger_function_name,
         "key_name" : vba_object.key_name,
         }
