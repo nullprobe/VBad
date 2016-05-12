@@ -89,6 +89,9 @@ def main():
 
             Info("Wrapping triggering function with auto_function_macro", 0,2)
             final_vba = Office_container.generate_trigger_function(vba, auto_function_macro)
+           
+            Info("Removing VBA style",0,2)
+            final_vba = VBA_Func.remove_style(final_vba)
 
             Office_container.AddVba(final_vba)
 
