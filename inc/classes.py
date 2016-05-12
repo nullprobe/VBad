@@ -236,6 +236,14 @@ class VBA_Functions:
                 tmp += "\" \n"
         return tmp
 
+    def remove_style(self, vba):
+        cleared_vba=""
+        for l in vba.splitlines():
+            if l.lstrip():
+                cleared_vba += l.lstrip()+"\n"
+        vba = cleared_vba
+        return vba
+
 class Info(Exception):
     def __init__(self, raison, level, tab=1):
         self.STD_OUTPUT_HANDLE_ID = c_ulong(0xfffffff5)
