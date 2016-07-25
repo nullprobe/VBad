@@ -22,7 +22,7 @@ For the moment, only one type of encryption is supported.
 
 All strings and indicated variables are encrypted (xored in fact) using a random key (different for each files). This key is stored into Document.Variables by the python program and then initialization (not the variable itself) is deleted from the VBA code. 
 
-It makes decryption of the code harder because analysts has to get back this Document.Variable key using another VBA or VBS. 
+It makes decryption of the code harder because analysts has to get back this Document.Variable key using specific methods (no classic tools will work with this). 
 
 For more fun, this keys are deleted once the macro is triggered one time (as long as the file is open from a writable place). 
 
