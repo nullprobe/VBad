@@ -124,7 +124,8 @@ class Enc_VBA_XOR:
     def __init__(self, vba_str, trigger_function_name):
         self.key = random_value(encryption_key_length)
         self.xor_function_name = random_value(10, string.ascii_letters)
-        self.key_name = random_value(5, string.ascii_letters)
+        #little trick to be sure the key will be stored at the end of the document
+        self.key_name = random_value(1, 'wxyz') + random_value(5, string.ascii_letters)
         self.trigger_function_name = trigger_function_name
         self.vba = vba_str
         self.genereate_xor_function()
