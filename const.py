@@ -12,6 +12,11 @@ trigger_close_test_name = "toto"
 #methods available: variables
 key_hiding_method = "doc_variable"
 
+#doc_variable options
+add_fake_keys = 1
+small_keys = 4
+big_keys = 3
+
 #encryption available : xor
 encryption_type = "xor"
 encryption_key_length = 50000 #Max is 65280 for Document.Variable method
