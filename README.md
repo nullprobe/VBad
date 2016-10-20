@@ -5,7 +5,7 @@ DISCLAIMER: This is only for testing purposes and can only be used where strict 
 
 Please read the LICENSE under readme/LICENSE for the licensing of VBad.
 
-![alt tag](https://raw.githubusercontent.com/Pepitoh/VBad/master/Example/example_ok.PNG)
+![alt tag](https://raw.githubusercontent.com/Pepitoh/VBad/master/Example/screen_vbad.PNG)
 
 # Features
 VBad is a tool that allows you to obfuscate (and encrypted) in many diffrent ways pieces of VBA code and integrated directly into a list of generated MS Office document. You would be able to : 
@@ -14,6 +14,7 @@ VBad is a tool that allows you to obfuscate (and encrypted) in many diffrent way
 * Randomize each functions' (or variables) names that you want;
 * Delete all tabulation/spaces/cariage return
 * Chose Encryption method, how and where encryption keys are stored;
+* Add customizable fake keys (to avoid easy detection with linux 'string' cmd) 
 * Generate as many unique MS Office document (with different randomize in the VBA) as you want using a filename list and a document Template;
 * Enable autodestruction of encryption Keys feature once the VBA has been trigger once; 
 
