@@ -3,14 +3,16 @@
 # 3 = All output
 error_level = 3
 
+repository = r"C:\appz\git\VBad"
+doc_type = "xls"
 
-#functions available : Onclose, Onopen
+#functions available : onClose, onOpen
 auto_function_macro = "onOpen"
 trigger_close_test_value="True"
 trigger_close_test_name = "toto"
 
 #methods available: variables
-key_hiding_method = "doc_variable"
+key_hiding_method = "variable"
 
 #doc_variable options
 add_fake_keys = 1
@@ -34,14 +36,14 @@ regex_string_to_hide = '\[var::(\w*)\]'
 regex_string_to_hide_find = '\[var::'+variable_name_ex+'\]'
 
 #Office informations
-template_file = r"C:\tmp\Vbad\Example\Template\template.doc" #Path to the template file used for generate malicious files (To be modified)
-filename_list = r"C:\tmp\Vbad\Example\Lists\filename_list.txt" #Path to the list that contains the filename of the malicious files that will be generated (To be modified)
+template_file = repository+r"\Example\Template\template.xls" #Path to the template file used for generate malicious files (To be modified)
+filename_list = repository+r"\Example\Lists\filename_list.txt" #Path to the list that contains the filename of the malicious files that will be generated (To be modified)
 
 #saving informations
-path_gen_files = r"C:\tmp\Vbad\Example\Results" #Path were results will be saved (To be modified)
+path_gen_files = repository+r"\Example\Results" #Path were results will be saved (To be modified)
 
 #Malicious VBS Information:
 #All data you want to encrypt and include in your doc
-original_vba_file = r"C:\tmp\Vbad\Example\Orignal_VBA\original_vba_prepared.vbs" #Path the prepared VBA files (To be modified)
+original_vba_file = repository+r"\Example\Orignal_VBA\original_vba_prepared.vbs" #Path the prepared VBA files (To be modified)
 trigger_function_name =  "Test" #Function that you want to auto_trigger (in your original_vba_file) (To be modified)
 string_to_hide = {"domain_name":"http://www.test.com", "path_to_save":r"C:\tmp\toto"}
