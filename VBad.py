@@ -64,15 +64,15 @@ def main():
         if file_type == ".doc":
             Office_container = WordObject()
         elif file_type == ".xls":
-            worksheet_name = ''.join(random.choice(string.ascii_letters) for _ in range(5));
-            cell_location = ''.join(random.choice(string.ascii_uppercase) for _ in range(1))+''.join(random.choice(string.digits) for _ in range(2));
+            worksheet_name = random_value(5,string.ascii_letters)
+            cell_location = random_value(1, string.ascii_uppercase) + random_value(2, string.digits)
             Info("Name of the hidden sheet: "+ worksheet_name, 0, 3)
             Info("Location of the cell: "+ cell_location, 0, 3)
             Office_container = ExcelObject(worksheet_name, cell_location) 
         
         if encryption_type == "xor":
             Info("XOR encrypton was selected", 0, 2)
-            vba = Enc_VBA_XOR(vba_str, trigger_function_name, doc_type, worksheet_name, cell_location)
+            vba = Enc_VBA_XOR(vba_str, trigger_function_name, file_type, worksheet_name, cell_location)
         else:
             raise Info(encryption_type+ " is not supported yet, feel free to code it :-)",3)
 
@@ -87,7 +87,7 @@ def main():
         
         Office_container.Open(template_file)
         Office_container.CreateNew()
-        VBA_Func = VBA_Functions(doc_type, worksheet_name, cell_location)
+        VBA_Func = VBA_Functions(file_type, worksheet_name, cell_location)
         #Adding keys :
         if key_hiding_method == "variable":
             if add_fake_keys:

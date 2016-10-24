@@ -17,7 +17,7 @@ class ExcelObject:
         except:
             Info("Cannot launch win32com.client.Dispatch(\"Excel.Application\"), check if word and pywin32 module are correcty installed", 3)
         self.excel.Visible = 0
-     
+        self.excel.DisplayAlerts = 0
 
     def Open(self, sFilename):
         try:
@@ -128,11 +128,9 @@ class ExcelObject:
 
     def Close(self):
         self.xls.Close(SaveChanges=0)
-        self.xls = None  
 
     def Quit(self):
-        self.excel = None
-        #os.system("taskkill /im WINWORD.exe")
+        self.excel.Quit()
         pythoncom.CoUninitialize()
 
 class WordObject:
@@ -241,10 +239,9 @@ class WordObject:
 
     def Close(self):
         self.doc.Close(SaveChanges=0)
-        self.doc = None
 
     def Quit(self):
-        self.word = None
+        self.word.Quit()
         #self.word.Quit()
         #os.system("taskkill /im WINWORD.exe")
         pythoncom.CoUninitialize()
@@ -264,12 +261,12 @@ class Enc_VBA_XOR:
         self.n = 0
 
     def generate_xor_function(self, doc_type):
-        if (doc_type == "doc"):
+        if (doc_type == ".doc"):
             active_type = "ActiveDocument"
             active_subtype = "Variables"
             active_value = "Value()"
 
-        elif (doc_type == "xls"):
+        elif (doc_type == ".xls"):
             active_type = "ThisWorkbook"
             active_subtype = "Sheets"
             active_value = "Range(\""+ self.cell_location+"\")"
@@ -359,7 +356,7 @@ class VBA_Functions:
 
     def generate_generic_store_function(self, macro_name, variable_name, variable_value):
         set_var = self.format_long_string(variable_value, "tmp")
-        if (self.doc_type == "doc"):
+        if (self.doc_type == ".doc"):
             gen_vba = """
             Sub %(macro_name)s()
             %(set_var)s
@@ -371,7 +368,7 @@ class VBA_Functions:
             "variable_name" : variable_name,
             "variable_value": "tmp"
             }
-        elif (self.doc_type == "xls"):
+        elif (self.doc_type == ".xls"):
             gen_vba = """
             Sub %(macro_name)s()
             %(set_var)s

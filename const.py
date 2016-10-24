@@ -3,8 +3,7 @@
 # 3 = All output
 error_level = 3
 
-repository = r"C:\appz\git\VBad"
-doc_type = "xls"
+repository = r"C:\tmp\VBad"
 
 #functions available : onClose, onOpen
 auto_function_macro = "onOpen"
