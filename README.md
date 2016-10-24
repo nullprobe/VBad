@@ -70,7 +70,7 @@ In Example folder, you will find an already marked vba file, a template.doc, a l
 #TODO : 
 * Other encryption methods
 * Other key hiding methods 
-* .xls generation
+* ~~.xls generation~~ (thx @DPeltier)
 * .docx and .xlsx generation
 
 Feel free to contribute :-)
