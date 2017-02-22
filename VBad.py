@@ -86,7 +86,7 @@ def main():
         vba.hide_string()
         
         Office_container.Open(template_file)
-        Office_container.CreateNew()
+        if file_type == ".xls" : Office_container.CreateNewTab()
         VBA_Func = VBA_Functions(file_type, worksheet_name, cell_location)
         #Adding keys :
         if key_hiding_method == "variable":

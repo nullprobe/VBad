@@ -28,7 +28,7 @@ class ExcelObject:
             Info("Cannot open "+sFilename+", Please check the validity of the path or the filename", 3)
 
 
-    def CreateNew(self):
+    def CreateNewTab(self):
         try:
             self.Worksheets = self.xls.Worksheets.Add()
             self.Worksheets.Name = self.worksheet_name
