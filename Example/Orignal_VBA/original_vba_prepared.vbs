@@ -4,7 +4,7 @@ End Function
 
 Public Function [rdm::15]Test()
 	[rdm::8]kikou = "AZERTY1234"
-	[rdm::15]test3 = "HELLO_WORLD"
+	[rdm::15]test3 = "HELLO_WORLD_with_a_double_quote_""_in_it"
 	[rdm::5]Excluded_string = "ExcludedString[!!]"
 	MsgBox test3
 	[rdm::12]domain_list = [var::domain_name]
