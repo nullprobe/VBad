@@ -51,7 +51,7 @@ Function [rdm::10]Test()  '=> Test() will become randomized with a 10 characters
 ```vbs
 Path_to_save_exe = [var::path] '=> string_to_hide("path") will be encrypted and put in the final VBA
 ``` 
-Git clone and customize config.py to fit your need, you have to indicate at least : 
+Git clone and customize const.py to fit your need, you have to indicate at least : 
 ```python
 template_file = r"C:\tmp\Vbad\Example\Template\template.doc" # The path to the template Office document you want to use to generate your files
 filename_list = r"C:\tmp\Vbad\Example\Lists\filename_list.txt" #The path to the file that contains a list of different filenames you want to use for your generated files
