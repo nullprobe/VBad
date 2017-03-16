@@ -318,13 +318,15 @@ class Enc_VBA_XOR:
         for strings in vba_strings:
             ciphered_string = ""
             if exclude_mark not in strings and strings != "":
-				for i in range(len(strings)):
-					ciphered_string += str((ord(strings[i]) ^ ord(self.key[self.n+i])))+","
-					if i % 20 == 0 and i != 0 and i != len(strings) - 1:
+                #Replace consecutive quotes by a simple one (consecutive quote are used in VBA as esacape char, we need to delete in ciphered_string)
+                strings_parsed = strings.replace('""', '"')
+                for i in range(len(strings_parsed)):
+					ciphered_string += str((ord(strings_parsed[i]) ^ ord(self.key[self.n+i])))+","
+					if i % 20 == 0 and i != 0 and i != len(strings_parsed) - 1:
 						ciphered_string += " _ \n"
-				ciphered_string = ciphered_string[:-1]
-				self.vba = self.vba.replace("\""+strings+"\"", self.xor_function_name + " ( Array ( "+ciphered_string+" ), "+str(self.n)+" )") #replace only VBA Strings, avoid replacing code in function for example.
-				self.n += len(strings)
+                ciphered_string = ciphered_string[:-1]
+                self.vba = self.vba.replace("\""+strings+"\"", self.xor_function_name + " ( Array ( "+ciphered_string+" ), "+str(self.n)+" )") #replace only VBA Strings, avoid replacing code in function for example.
+                self.n += len(strings)
         self.vba = re.sub(regex_exclude_string_del, '', self.vba)
         self.vba = self.xor_function + self.vba
 
