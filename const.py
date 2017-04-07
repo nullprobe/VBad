@@ -19,8 +19,8 @@ small_keys = 4
 big_keys = 3
 
 #options
-##use this vulnerability : http://seclists.org/fulldisclosure/2017/Mar/90
-##Replace module name with 0X0A 0X0D. Module containing effective payload becomes unvisible from Developper Tools making analyse more complicated :)
+##use these vulnerability : http://seclists.org/fulldisclosure/2017/Mar/90
+##Replace module name that contains effective payload with 0X0A 0X0D. The module becomes invisible from Developper Tools making analyse more complicated :)
 delete_module_name = 1
 
 #encryption available : xor
