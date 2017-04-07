@@ -17,6 +17,8 @@ VBad is a tool that allows you to obfuscate (and encrypted) in many diffrent way
 * Add customizable fake keys (to avoid some easy detection stuff)
 * Generate as many unique MS Office document (with different randomize in the VBA) as you want using a filename list and a document Template;
 * Enable autodestruction of encryption Keys feature once the VBA has been trigger once; 
+* **20/10/16** : fake keys implementation on #VBad to avoid some easy detection stuff
+* **07/04/17** : implementing option that allows exploiting this vulnerability: http://seclists.org/fulldisclosure/2017/Mar/90. VBad is now able to destroy references to the module containing effecitve payload in order to make it invisible from VBA Developper Tool making analyses and debugging much more harder :-).
 
 #How it works
 For the moment, only one type of encryption is supported. 
