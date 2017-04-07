@@ -18,6 +18,11 @@ add_fake_keys = 1
 small_keys = 4
 big_keys = 3
 
+#options
+##use this vulnerability : http://seclists.org/fulldisclosure/2017/Mar/90
+##Replace module name with 0X0A 0X0D. Module containing effective payload becomes unvisible from Developper Tools making analyse more complicated :)
+delete_module_name = 1
+
 #encryption available : xor
 encryption_type = "xor"
 encryption_key_length = 50000 #Max is 65280 for Document.Variable method
@@ -35,7 +40,7 @@ regex_string_to_hide = '\[var::(\w*)\]'
 regex_string_to_hide_find = '\[var::'+variable_name_ex+'\]'
 
 #Office informations
-template_file = repository+r"\Example\Template\template.xls" #Path to the template file used for generate malicious files (To be modified)
+template_file = repository+r"\Example\Template\template.doc" #Path to the template file used for generate malicious files (To be modified)
 filename_list = repository+r"\Example\Lists\filename_list.txt" #Path to the list that contains the filename of the malicious files that will be generated (To be modified)
 
 #saving informations

@@ -123,8 +123,8 @@ class ExcelObject:
 
         if method == "onClose": gen_fun += "\n End If\n"
         gen_fun += "End Sub\n"
-        gen_vba = vba_object.getCurrentVba() +"\n"+ gen_fun
-        return gen_vba
+        #gen_vba = vba_object.getCurrentVba() +"\n"+ gen_fun
+        return gen_fun
 
     def Close(self):
         self.xls.Close(SaveChanges=0)
@@ -234,8 +234,8 @@ class WordObject:
 
         if method == "onClose": gen_fun += "\n End If\n"
         gen_fun += "End Sub\n"
-        gen_vba = vba_object.getCurrentVba() +"\n"+ gen_fun
-        return gen_vba
+        #gen_vba = vba_object.getCurrentVba() +"\n"+ gen_fun
+        return gen_fun
 
     def Close(self):
         self.doc.Close(SaveChanges=0)
@@ -261,7 +261,7 @@ class Enc_VBA_XOR:
         self.n = 0
 
     def generate_xor_function(self, doc_type):
-        if (doc_type == ".doc"):
+        if doc_type == ".doc":
             active_type = "ActiveDocument"
             active_subtype = "Variables"
             active_value = "Value()"
@@ -358,7 +358,7 @@ class VBA_Functions:
 
     def generate_generic_store_function(self, macro_name, variable_name, variable_value):
         set_var = self.format_long_string(variable_value, "tmp")
-        if (self.doc_type == ".doc"):
+        if self.doc_type == ".doc":
             gen_vba = """
             Sub %(macro_name)s()
             %(set_var)s
