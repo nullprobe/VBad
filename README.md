@@ -32,7 +32,7 @@ For more fun, this keys are deleted once the macro is triggered one time (as lon
 
 New storage methods and real encryption algorithms are to come. But, remember it's VBA, we do not have so many choices. :-).
 
-#Prerequisites
+# Prerequisites
 * Office (Excel/Word) for generated final doc (tested with  Office 2010 and 2013) with Macro fully activated and checkbox "Trust Access to the VBA project object model" checked (in macro security settings, it allows python code to change and create macro)  
 * Python 2.7 
 * win32com
