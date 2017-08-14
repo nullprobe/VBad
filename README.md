@@ -18,9 +18,10 @@ VBad is a tool that allows you to obfuscate (and encrypted) in many diffrent way
 * Generate as many unique MS Office document (with different randomize in the VBA) as you want using a filename list and a document Template;
 * Enable autodestruction of encryption Keys feature once the VBA has been trigger once; 
 * **20/10/16** : fake keys implementation on #VBad to avoid some easy detection stuff
-* **07/04/17** : implementing option that allows exploiting this vulnerability: http://seclists.org/fulldisclosure/2017/Mar/90. VBad is now able to destroy references to the module containing effecitve payload in order to make it invisible from VBA Developper Tool making analyses and debugging much more harder :-).
+* **07/04/17** : implementing option that allows exploiting this vulnerability: http://seclists.org/fulldisclosure/2017/Mar/90. VBad is now able to destroy references to the module containing effecitve payload in order to make it invisible from VBA Developper Tool making analyses and debugging much more harder :-)
 
-#How it works
+
+# How it works
 For the moment, only one type of encryption is supported. 
 
 All strings and indicated variables are encrypted (xored in fact) using a random key (different for each files). This key is stored into Document.Variables by the python program and then initialization (not the variable itself) is deleted from the VBA code. 
@@ -36,7 +37,7 @@ New storage methods and real encryption algorithms are to come. But, remember it
 * Python 2.7 
 * win32com
 
-#How to use 
+# How to use 
 
 First of all, you need to markdown your orignal VBA to indicate the script what you want to obfuscate/randomize or not :
 * All VBA strings are encrypted by default. Moreover, you can exclude encryption of one string by adding an exclude mark ([!!]) at the end of the string. Example :
@@ -66,10 +67,10 @@ string_to_hide = {"domain_name":"http://www.test.com", "path_to_save":r"C:\tmp\t
 
 
 
-#Example 
+# Example 
 In Example folder, you will find an already marked vba file, a template.doc, a list of 3 filename. You can use it and adapt it as you need.
 
-#TODO : 
+# TODO : 
 * Other encryption methods
 * Other key hiding methods 
 * ~~.xls generation~~ (thx @DPeltier)
